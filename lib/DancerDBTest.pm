@@ -19,16 +19,14 @@ get '/database_with_timeout' => sub {
     my $dbh = database();
     my ($dbname1, $dbname2);
     {
-        $dbname1 = $dbh->selectrow_array( "select database()" );
+        $dbname1 = $dbh->selectrow_array( "/* before sleep */ select database()" );
     }
 
     sleep(3);
 
-    #$dbh->disconnect();    
-    # uncommenting above gives the error 'MySQL server has gone away'
-    
     {
-        $dbname2 = $dbh->selectrow_array( "select database()" );
+        $dbname2 = $dbh->selectrow_array( "/* after sleep */ select database()" );
+        # on centos7 with mariadb we get 'MySQL server has gone away' here
     }
     template 'raw', { content=> "dbname1: $dbname1, dbname2: $dbname2" };
 };
