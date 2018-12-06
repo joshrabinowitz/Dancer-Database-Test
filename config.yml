@@ -36,9 +36,9 @@ plugins:
         #host: 'localhost'
         username: 'root'
         password: ''
+        # connection_check_threshold longer than mysql timeout should stop immediate reconnection
         connection_check_threshold: 10
         dbi_params:
             RaiseError: 1
             AutoCommit: 1
-            charset: utf8mb4
 
