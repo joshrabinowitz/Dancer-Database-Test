@@ -1,6 +1,7 @@
 package DancerDBTest;
 use Dancer::Plugin::Database;
 use Dancer ':syntax';
+
 use File::Slurp::Tiny qw(read_file);
 
 our $VERSION = '0.1';
@@ -15,14 +16,16 @@ get '/database' => sub {
 };
 get '/my.cnf' => sub {
     my $content = '';
-    try{
-        $content = read_file( "/etc/my.cnf" );
-    } catch {};
+
+    Try::Tiny::try{ 
+        $content = read_file( "/etc/my.cnf" ); 
+    } Try::Tiny::catch {
+    };
 
     unless($content) {
-        try{
-            $content = read_file( "/etc/mysql/my.cnf" );
-        } catch {};
+        Try::Tiny::try{ $content = read_file( "/etc/mysql/my.cnf" ); } 
+        Try::Tiny::catch {
+        };
     }
     
     template 'raw', { content=>$content };
