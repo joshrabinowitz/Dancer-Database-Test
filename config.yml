@@ -38,7 +38,7 @@ plugins:
         password: ''
         # connection_check_threshold longer than mysql timeout should stop immediate reconnection
         connection_check_threshold: 10
-        on_connect_do: ["set global wait_timeout=1", "set global interactive_timeout=1"],
+        on_connect_do: ["set global wait_timeout=1", "set global interactive_timeout=1"]
         dbi_params:
             RaiseError: 1
             AutoCommit: 1
