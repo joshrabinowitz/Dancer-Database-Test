@@ -6,6 +6,3 @@ services:
   - mysql
 before_script:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
-  - mysql -e 'set global wait_timeout=1'
-  - mysql -e 'set global interactive_timeout=1'
-  # above 'set' lines should make server timeout quickly
