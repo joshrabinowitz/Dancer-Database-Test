@@ -1,0 +1,8 @@
+language: perl
+perl:
+  - '5.26'
+  # 5.26 is fastest for us
+services:
+  - mysql
+before_script:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
