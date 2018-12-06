@@ -1,6 +1,7 @@
 language: perl
 perl:
-  - "5.24.3"
+#  - "5.24.3"
+  - "5.24-extras"
 services:
   - mysql
 before_script:
