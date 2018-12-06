@@ -10,7 +10,7 @@ get '/' => sub {
 
 get '/database' => sub {
     my $dbname = database()->selectrow_array( "select database()" );
-    template 'index', { content=>"HI, connected to $dbname" };
+    template 'raw', { content=>"HI, connected to $dbname" };
 
 };
 
