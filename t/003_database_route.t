@@ -16,7 +16,8 @@ response_content_like( ['GET' => '/database'], qr{connected to test}, "connected
 response_content_like( ['GET' => '/my.cnf'], qr{mysqld}, "my.cnf contains 'mysqld'" );
 
 my $content = '';
-try { $content = read_file( "/etc/my.cnf" ); } catch {}
-try { $content = read_file( "/etc/mysql/my.cnf" ); } catch {}
+try { $content = read_file( "/etc/my.cnf" ); } catch {};
+try { $content = read_file( "/etc/mysql/my.cnf" ); } catch {};
+
 diag( "content: $content" );
 
