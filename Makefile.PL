@@ -24,6 +24,7 @@ WriteMakefile(
         'DBD::mysql'                    => 0,
         'File::Slurp::Tiny'             => 0,
         'Try::Tiny'                     => 0,
+        'IPC::Run'                    => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'DancerDBTest-*' },

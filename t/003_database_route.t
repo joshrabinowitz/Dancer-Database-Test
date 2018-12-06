@@ -1,8 +1,6 @@
-use Test::More tests => 7;
+use Test::More tests => 6;
 use strict;
 use warnings;
-use File::Slurp::Tiny qw(read_file);
-use Try::Tiny;
 
 # the order is important
 use DancerDBTest;
@@ -15,13 +13,7 @@ response_status_is ['GET' => '/database'], 200, 'response status is 200 for /dat
 response_content_like( ['GET' => '/database'], qr{connected to test}, "connected to 'test' database" );
 response_content_like( ['GET' => '/my.cnf'], qr{mysqld}, "my.cnf contains 'mysqld'" );
 
-response_content_like( ['GET' => '/database_with_timeout'], qr{name1: test} );
-response_content_like( ['GET' => '/database_with_timeout'], qr{name2: test} );
+response_content_like( ['GET' => '/database_with_timeout'], qr{dbname1: test} );
+response_content_like( ['GET' => '/database_with_timeout'], qr{dbname2: test} );
 
-my $content = '';
-try { $content = read_file( "/etc/my.cnf" ); } catch {};
-try { $content = read_file( "/etc/mysql/my.cnf" ); } catch {};
-ok( $content, "read my.cnf" );
-
-#diag( "content: $content" );
 
