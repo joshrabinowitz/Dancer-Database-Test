@@ -14,7 +14,17 @@ get '/database' => sub {
     template 'raw', { content=>"HI, connected to $dbname" };
 };
 get '/my.cnf' => sub {
-    my $content = read_file( "/etc/my.cnf" );
+    my $content = '';
+    try{
+        $content = read_file( "/etc/my.cnf" );
+    } catch {};
+
+    unless($content) {
+        try{
+            $content = read_file( "/etc/mysql/my.cnf" );
+        } catch {};
+    }
+    
     template 'raw', { content=>$content };
 };
 
